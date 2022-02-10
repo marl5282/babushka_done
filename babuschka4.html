@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+
+  <style>
+    section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 5px;
+    }
+
+    /* body {
+      background-color: #d9b88f;
+    } */
+    article {
+      border-style: solid;
+      border-color: #a62631;
+      margin: 10px;
+      background-color: #ff013c;
+    }
+    h2 {
+      margin: 1.5rem;
+      font-family: "Kremlin", serif;
+      text-align: center;
+      color: #00e6f6;
+    }
+
+    h1 {
+      margin: 2rem;
+      font-family: "Kremlin", serif;
+      color: #00e6f6;
+      text-align: center;
+    }
+
+    p {
+      margin: 1.5rem;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      font-family: "baucher-gothic-urw", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    /* button { */
+    .button-49,
+    .button-49:after {
+      z-index: 10;
+      margin: 20px;
+      margin-left: 50px;
+
+      width: 120px;
+      height: 50px;
+      line-height: 78px;
+      font-size: 20px;
+      font-family: "Kremlin", sans-serif;
+      background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+      border: 0;
+      color: #fff;
+      letter-spacing: 3px;
+      box-shadow: 6px 0px 0px #00e6f6;
+      outline: transparent;
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-49:after {
+      --slice-0: inset(50% 50% 50% 50%);
+      --slice-1: inset(80% -6px 0 0);
+      --slice-2: inset(50% -6px 30% 0);
+      --slice-3: inset(10% -6px 85% 0);
+      --slice-4: inset(40% -6px 43% 0);
+      --slice-5: inset(80% -6px 5% 0);
+
+      content: "ALTERNATE TEXT";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        45deg,
+        transparent 3%,
+        #00e6f6 3%,
+        #00e6f6 5%,
+        #ff013c 5%
+      );
+      text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+      clip-path: var(--slice-0);
+    }
+
+    .button-49:hover:after {
+      animation: 1s glitch;
+      animation-timing-function: steps(2, end);
+    }
+
+    @keyframes glitch {
+      0% {
+        clip-path: var(--slice-1);
+        transform: translate(-20px, -10px);
+      }
+      10% {
+        clip-path: var(--slice-3);
+        transform: translate(10px, 10px);
+      }
+      20% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 10px);
+      }
+      30% {
+        clip-path: var(--slice-3);
+        transform: translate(0px, 5px);
+      }
+      40% {
+        clip-path: var(--slice-2);
+        transform: translate(-5px, 0px);
+      }
+      50% {
+        clip-path: var(--slice-3);
+        transform: translate(5px, 0px);
+      }
+      60% {
+        clip-path: var(--slice-4);
+        transform: translate(5px, 10px);
+      }
+      70% {
+        clip-path: var(--slice-2);
+        transform: translate(-10px, 10px);
+      }
+      80% {
+        clip-path: var(--slice-5);
+        transform: translate(20px, -10px);
+      }
+      90% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 0px);
+      }
+      100% {
+        clip-path: var(--slice-1);
+        transform: translate(0);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .button-49,
+      .button-49:after {
+        width: 200px;
+        height: 86px;
+        line-height: 88px;
+        margin-left: 90px;
+      }
+    }
+
+    #knap {
+      margin-bottom: 50px;
+    }
+
+    @media (min-width: 800px) {
+      #knap {
+        margin-bottom: 80px;
+      }
+    }
+
+    .valgt {
+      background-color: #a62631;
+    }
+
+    #modal {
+      /* z-index sætter tingene frem eller tilbage på "scenen" og her sætter vi modal først/øverst på siden (hvis jeg fjerner dette ryger menuen og splashbilledet op foran popup vinduet)*/
+      z-index: 100;
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      background-color: #00e6f6a4;
+    }
+
+    #modal article {
+      max-width: 600px;
+      /* margin: 3em; */
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #ff013c;
+    }
+    /* @media (min-width: 800px) {
+      #modal {
+        margin: 3em auto;
+        justify-content: center;
+      }
+    } */
+
+    media #modal p {
+      color: white;
+      text-align: center;
+    }
+
+    .splash {
+      z-index: 10;
+      border-style: solid;
+      animation-name: puls_kf;
+      animation-duration: 0.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+    }
+
+    @keyframes puls_kf {
+      0% {
+        transform: scale(0.8);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+  <body>
+    <aside id="modal">
+      <article>
+        <img src="" alt="" />
+        <h2></h2>
+        <p class="kortbeskrivelse"></p>
+        <p class="langbeskrivelse"></p>
+        <p class="oprindelsesregion"></p>
+        <p class="pris-modal"></p>
+      </article>
+    </aside>
+
+    <section>
+      <header>
+        <div class="splash">
+          <img src="Artboard 1.png" alt="" />
+        </div>
+      </header>
+    </section>
+    <h1>Alt</h1>
+    <section id="knap">
+      <nav>
+        <!-- HTML !-->
+
+        <button data-kategori="alt" class="valgt button-49">Alt</button>
+        <button data-kategori="forretter" class="button-49">Forretter</button>
+        <button data-kategori="hovedretter" class="button-49">
+          Hovedretter
+        </button>
+        <button data-kategori="desserter" class="button-49">Desserter</button>
+        <button data-kategori="drikkevarer" class="button-49">
+          Drikkevarer
+        </button>
+      </nav>
+      <!-- class="valgt" -->
+    </section>
+    <!-- <h1>Alt</h1> -->
+    <!-- <h2>Menu</h2> -->
+    <section id="maden">
+      <template>
+        <article>
+          <img src="" alt="" class="billedeurl" />
+          <h2 class="navn"></h2>
+          <p class="kortbeskrivelse"></p>
+          <p class="pris"></p>
+        </article>
+      </template>
+    </section>
+  </body>
+  <script>
+    // her definerer jeg de forskellige let og const som jeg senere referere til.
+    const url = "https://babushka-dd8a.restdb.io/rest/menu";
+    // settings, test data, tag link, husk at fjerne max
+    // key = database, API keys, manage dem --> Selve nøglen
+    const options = {
+      headers: {
+        "x-apikey": "600ec2fb1346a1524ff12de4",
+      },
+    };
+
+    let json;
+    let myKatogri = "alt";
+    const template = document.querySelector("template").content;
+    const header = document.querySelector("h1");
+    const modal = document.querySelector("#modal");
+    const main = document.querySelector("#maden");
+
+    // OKAY OKAY!! Så nede i min asynkrone funktion henter jeg altså både
+    // min nøgle og mit link og venter på at det et hentet så jeg kan vise det
+
+    document.addEventListener("DOMContentLoaded", start);
+    // Laver en funktion til start
+    function start() {
+      console.log("start");
+      const filterKnapper = document.querySelectorAll("nav button");
+      filterKnapper.forEach((knap) =>
+        knap.addEventListener("click", filtrerKategorier)
+      );
+
+      // her henter den vores data (altså vores json)
+      async function henData() {
+        const resspons = await fetch(url, options);
+        json = await resspons.json();
+        vis(json, myKatogri);
+      }
+
+      henData();
+    }
+
+    // Vi definerer hvad der skal ske når man klikker på en knap (ovenstående eventlisteners)
+    // this referere til de knapper vi har lavet
+    // viser os hvad det er vi har klikket på
+
+    function filtrerKategorier() {
+      console.log("filtrerKategorier");
+      let klikketPaa = this.dataset.kategori;
+      console.log("klikketPaa :" + klikketPaa);
+
+      // Får den knap man trykker på til at ændre farve
+      document.querySelector(".valgt").classList.remove("valgt");
+      this.classList.add("valgt");
+
+      // Få kategorinavnet til at ændre sig når man klikker på en katergoriknap
+      header.textContent = this.textContent;
+      // går ned i den her og klikketPaa viser hvilken knap/kategori(dataset) der er blevet trykket på
+      vis(json, klikketPaa);
+    }
+
+    // den har json med sig og så hvad der er belvet trykket på (x) og alt efter det vælger den
+    function vis(json, x) {
+      console.log(json);
+      // vi fjerner alt fra main (der skla ikke stå noget i main)
+      main.textContent = "";
+
+      // så siger vi at json skal løbe igennem hvert element objekt (alle retter)
+      json.forEach((retter) => {
+        // så siger vi i if sætningen at enten så skal den vise det man har klikket på eller også skal den vise alt (hele menuen eller kategoribilleder og tekst.)
+        if (retter.kategori == x || x == "alt") {
+          const klon = template.cloneNode(true);
+
+          // Her er den template klon vi bruger til at sætte noget ind
+          klon.querySelector(".billedeurl").src =
+            "images/" + retter.billednavn + "-md.jpg";
+          klon.querySelector(".navn").textContent = retter.navn;
+          klon.querySelector(".kortbeskrivelse").textContent =
+            retter.kortbeskrivelse;
+          klon.querySelector(".pris").textContent = retter.pris + " kr";
+
+          // Her laver jeg singleview- tager articlen inde i kipoen af template som jeg laver et click på så info kommer frem om den enkelte ret.
+          // alle medlemmer får et click så det er
+          klon
+            .querySelector("article")
+            .addEventListener("click", () => visDetaljer(retter));
+
+          main.appendChild(klon);
+        }
+      });
+      console.log(myKatogri);
+    }
+
+    // Her laver jeg en function til hvad der skal ske når man klikker på en ret (laver en funktion til visDetaljer)
+    function visDetaljer(retter) {
+      console.log("visDetaljer" + retter);
+      modal.querySelector("h2").textContent = retter.navn;
+      modal.querySelector("img").src =
+        "images/" + retter.billednavn + "-md.jpg";
+      modal.querySelector(".kortbeskrivelse").textContent =
+        retter.kortbeskrivelse;
+      modal.querySelector(".langbeskrivelse").textContent =
+        retter.langbeskrivelse;
+      modal.querySelector(".pris-modal").textContent = retter.pris + " kr";
+      modal.querySelector(".oprindelsesregion").textContent =
+        retter.oprindelsesregion;
+
+      // this.classList.add("");
+      modal.style.display = "block";
+      // Her laver jeg så jeg fjerner single view igen
+      modal.addEventListener("click", () => (modal.style.display = "none"));
+    }
+  </script>
+</html>
